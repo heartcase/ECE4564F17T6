@@ -1,0 +1,23 @@
+How to use the swagger UI to test our API
+	Go to the swaggerUI folder
+	Run "pip3 install -r requirements.txt" for the first time
+	Then Run "python3 -m swagger_server"
+	Then go to http://localhost:8080/ui/ and you will see a api document page
+	You can test the API by clicking "Try it out!"
+	Fill all the parameters and Click "Send"
+	If you need basic auth, click the red exclamation sign to login
+	Then It will show all the information of the request and response
+	
+How to use Flask-restful
+	It is a very useful extension of flask, I used this in our project3
+	You can look into that, but it use flask-discoverer to advertise the resources which won't be used in our project
+	Tutorials：
+		A basic introduction of Flask and Flask-restful：
+			https://www.youtube.com/watch?v=2v56TUT_580
+		A little bit more on decorators and Swagger if you are interested
+			(Authorization, error handling and more)
+			https://www.youtube.com/watch?v=9KmF9yBzDx8
+	Documents:
+		https://flask-restful.readthedocs.io/en/latest/
+	
+	
