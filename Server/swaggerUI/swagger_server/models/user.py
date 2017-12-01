@@ -15,41 +15,36 @@ class User(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, uid: int=None, username: str=None, password: str=None, parking: bool=None, spot: int=None):  # noqa: E501
+    def __init__(self, uid: int=None, name: str=None, parking: str=None, spot_id: int=None):  # noqa: E501
         """User - a model defined in Swagger
 
         :param uid: The uid of this User.  # noqa: E501
         :type uid: int
-        :param username: The username of this User.  # noqa: E501
-        :type username: str
-        :param password: The password of this User.  # noqa: E501
-        :type password: str
+        :param name: The name of this User.  # noqa: E501
+        :type name: str
         :param parking: The parking of this User.  # noqa: E501
-        :type parking: bool
-        :param spot: The spot of this User.  # noqa: E501
-        :type spot: int
+        :type parking: str
+        :param spot_id: The spot_id of this User.  # noqa: E501
+        :type spot_id: int
         """
         self.swagger_types = {
             'uid': int,
-            'username': str,
-            'password': str,
-            'parking': bool,
-            'spot': int
+            'name': str,
+            'parking': str,
+            'spot_id': int
         }
 
         self.attribute_map = {
             'uid': 'uid',
-            'username': 'username',
-            'password': 'password',
+            'name': 'name',
             'parking': 'parking',
-            'spot': 'spot'
+            'spot_id': 'spot_id'
         }
 
         self._uid = uid
-        self._username = username
-        self._password = password
+        self._name = name
         self._parking = parking
-        self._spot = spot
+        self._spot_id = spot_id
 
     @classmethod
     def from_dict(cls, dikt) -> 'User':
@@ -66,6 +61,7 @@ class User(Model):
     def uid(self) -> int:
         """Gets the uid of this User.
 
+        id of the user  # noqa: E501
 
         :return: The uid of this User.
         :rtype: int
@@ -76,6 +72,7 @@ class User(Model):
     def uid(self, uid: int):
         """Sets the uid of this User.
 
+        id of the user  # noqa: E501
 
         :param uid: The uid of this User.
         :type uid: int
@@ -84,85 +81,70 @@ class User(Model):
         self._uid = uid
 
     @property
-    def username(self) -> str:
-        """Gets the username of this User.
+    def name(self) -> str:
+        """Gets the name of this User.
 
+        name of the user  # noqa: E501
 
-        :return: The username of this User.
+        :return: The name of this User.
         :rtype: str
         """
-        return self._username
+        return self._name
 
-    @username.setter
-    def username(self, username: str):
-        """Sets the username of this User.
+    @name.setter
+    def name(self, name: str):
+        """Sets the name of this User.
 
+        name of the user  # noqa: E501
 
-        :param username: The username of this User.
-        :type username: str
+        :param name: The name of this User.
+        :type name: str
         """
 
-        self._username = username
+        self._name = name
 
     @property
-    def password(self) -> str:
-        """Gets the password of this User.
-
-
-        :return: The password of this User.
-        :rtype: str
-        """
-        return self._password
-
-    @password.setter
-    def password(self, password: str):
-        """Sets the password of this User.
-
-
-        :param password: The password of this User.
-        :type password: str
-        """
-
-        self._password = password
-
-    @property
-    def parking(self) -> bool:
+    def parking(self) -> str:
         """Gets the parking of this User.
 
+        if the user is parking  # noqa: E501
 
         :return: The parking of this User.
-        :rtype: bool
+        :rtype: str
         """
         return self._parking
 
     @parking.setter
-    def parking(self, parking: bool):
+    def parking(self, parking: str):
         """Sets the parking of this User.
 
+        if the user is parking  # noqa: E501
 
         :param parking: The parking of this User.
-        :type parking: bool
+        :type parking: str
         """
 
         self._parking = parking
 
     @property
-    def spot(self) -> int:
-        """Gets the spot of this User.
+    def spot_id(self) -> int:
+        """Gets the spot_id of this User.
 
+        the id of parking spot  # noqa: E501
 
-        :return: The spot of this User.
+        :return: The spot_id of this User.
         :rtype: int
         """
-        return self._spot
+        return self._spot_id
 
-    @spot.setter
-    def spot(self, spot: int):
-        """Sets the spot of this User.
+    @spot_id.setter
+    def spot_id(self, spot_id: int):
+        """Sets the spot_id of this User.
 
+        the id of parking spot  # noqa: E501
 
-        :param spot: The spot of this User.
-        :type spot: int
+        :param spot_id: The spot_id of this User.
+        :type spot_id: int
         """
 
-        self._spot = spot
+        self._spot_id = spot_id

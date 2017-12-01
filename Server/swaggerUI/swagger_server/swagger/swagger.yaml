@@ -14,7 +14,6 @@ paths:
   /Login:
     get:
       summary: "Login into server"
-      description: "check user crediential"
       operationId: "login_get"
       produces:
       - "application/json"
@@ -38,12 +37,13 @@ paths:
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /ParkingSpots:
     get:
+      summary: "get the list of the parking spots"
       operationId: "parking_spots_get"
       parameters:
       - name: "range"
         in: "query"
-        description: "show the list of parking spots by filter [\"All\", \"Available\"\
-          , \"Taken\"]"
+        description: "show the list of parking spots by filter [\"all\", \"available\"\
+          , \"taken\"]"
         required: false
         type: "string"
       responses:
@@ -56,6 +56,7 @@ paths:
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /ParkingSpots/{id}:
     get:
+      summary: "check the status of the parking spot"
       operationId: "parking_spots_id_get"
       parameters:
       - name: "id"
@@ -70,10 +71,9 @@ paths:
             $ref: "#/definitions/ParkingSpot"
         400:
           description: "Fail"
-      security:
-      - basicAuth: []
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
     post:
+      summary: "park or leave the parking spot"
       description: "the user id"
       operationId: "parking_spots_id_post"
       parameters:
@@ -90,7 +90,14 @@ paths:
         type: "string"
       - name: "uid"
         in: "query"
+        description: "user id unique for each"
         required: true
+        type: "integer"
+        format: "int32"
+      - name: "time"
+        in: "query"
+        description: "the num of hour allow user to park [1-24]"
+        required: false
         type: "integer"
         format: "int32"
       responses:
@@ -98,6 +105,26 @@ paths:
           description: "Successful CheckIn Or CheckOut"
         400:
           description: "Fail"
+      security:
+      - basicAuth: []
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /User/{uid}:
+    get:
+      summary: "check the status of the user"
+      operationId: "user_uid_get"
+      parameters:
+      - name: "uid"
+        in: "path"
+        description: "user id"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Successful search"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
       security:
       - basicAuth: []
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
@@ -111,21 +138,19 @@ definitions:
       id:
         type: "integer"
         format: "int32"
+        description: "parking spot id unique for each"
       name:
         type: "string"
+        description: "show the name of the parking spot"
+      location:
+        type: "string"
+        description: "the position of the parking spot"
       full:
         type: "boolean"
-      time:
-        type: "string"
-        format: "date-time"
-      user:
-        type: "integer"
-        format: "int32"
     example:
       name: "name"
+      location: "location"
       id: 0
-      time: "2000-01-23T04:56:07.000+00:00"
-      user: 6
       full: true
   User:
     type: "object"
@@ -133,13 +158,19 @@ definitions:
       uid:
         type: "integer"
         format: "int32"
-      username:
+        description: "id of the user"
+      name:
         type: "string"
-      password:
-        type: "string"
-        format: "password"
+        description: "name of the user"
       parking:
-        type: "boolean"
-      spot:
+        type: "string"
+        description: "if the user is parking"
+      spot_id:
         type: "integer"
         format: "int32"
+        description: "the id of parking spot"
+    example:
+      parking: "parking"
+      uid: 0
+      spot_id: 6
+      name: "name"

@@ -15,41 +15,36 @@ class ParkingSpot(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: int=None, name: str=None, full: bool=None, time: datetime=None, user: int=None):  # noqa: E501
+    def __init__(self, id: int=None, name: str=None, location: str=None, full: bool=None):  # noqa: E501
         """ParkingSpot - a model defined in Swagger
 
         :param id: The id of this ParkingSpot.  # noqa: E501
         :type id: int
         :param name: The name of this ParkingSpot.  # noqa: E501
         :type name: str
+        :param location: The location of this ParkingSpot.  # noqa: E501
+        :type location: str
         :param full: The full of this ParkingSpot.  # noqa: E501
         :type full: bool
-        :param time: The time of this ParkingSpot.  # noqa: E501
-        :type time: datetime
-        :param user: The user of this ParkingSpot.  # noqa: E501
-        :type user: int
         """
         self.swagger_types = {
             'id': int,
             'name': str,
-            'full': bool,
-            'time': datetime,
-            'user': int
+            'location': str,
+            'full': bool
         }
 
         self.attribute_map = {
             'id': 'id',
             'name': 'name',
-            'full': 'full',
-            'time': 'time',
-            'user': 'user'
+            'location': 'location',
+            'full': 'full'
         }
 
         self._id = id
         self._name = name
+        self._location = location
         self._full = full
-        self._time = time
-        self._user = user
 
     @classmethod
     def from_dict(cls, dikt) -> 'ParkingSpot':
@@ -66,6 +61,7 @@ class ParkingSpot(Model):
     def id(self) -> int:
         """Gets the id of this ParkingSpot.
 
+        parking spot id unique for each  # noqa: E501
 
         :return: The id of this ParkingSpot.
         :rtype: int
@@ -76,6 +72,7 @@ class ParkingSpot(Model):
     def id(self, id: int):
         """Sets the id of this ParkingSpot.
 
+        parking spot id unique for each  # noqa: E501
 
         :param id: The id of this ParkingSpot.
         :type id: int
@@ -87,6 +84,7 @@ class ParkingSpot(Model):
     def name(self) -> str:
         """Gets the name of this ParkingSpot.
 
+        show the name of the parking spot  # noqa: E501
 
         :return: The name of this ParkingSpot.
         :rtype: str
@@ -97,12 +95,36 @@ class ParkingSpot(Model):
     def name(self, name: str):
         """Sets the name of this ParkingSpot.
 
+        show the name of the parking spot  # noqa: E501
 
         :param name: The name of this ParkingSpot.
         :type name: str
         """
 
         self._name = name
+
+    @property
+    def location(self) -> str:
+        """Gets the location of this ParkingSpot.
+
+        the position of the parking spot  # noqa: E501
+
+        :return: The location of this ParkingSpot.
+        :rtype: str
+        """
+        return self._location
+
+    @location.setter
+    def location(self, location: str):
+        """Sets the location of this ParkingSpot.
+
+        the position of the parking spot  # noqa: E501
+
+        :param location: The location of this ParkingSpot.
+        :type location: str
+        """
+
+        self._location = location
 
     @property
     def full(self) -> bool:
@@ -124,45 +146,3 @@ class ParkingSpot(Model):
         """
 
         self._full = full
-
-    @property
-    def time(self) -> datetime:
-        """Gets the time of this ParkingSpot.
-
-
-        :return: The time of this ParkingSpot.
-        :rtype: datetime
-        """
-        return self._time
-
-    @time.setter
-    def time(self, time: datetime):
-        """Sets the time of this ParkingSpot.
-
-
-        :param time: The time of this ParkingSpot.
-        :type time: datetime
-        """
-
-        self._time = time
-
-    @property
-    def user(self) -> int:
-        """Gets the user of this ParkingSpot.
-
-
-        :return: The user of this ParkingSpot.
-        :rtype: int
-        """
-        return self._user
-
-    @user.setter
-    def user(self, user: int):
-        """Sets the user of this ParkingSpot.
-
-
-        :param user: The user of this ParkingSpot.
-        :type user: int
-        """
-
-        self._user = user
