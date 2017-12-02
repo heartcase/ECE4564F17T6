@@ -42,8 +42,8 @@ paths:
       parameters:
       - name: "range"
         in: "query"
-        description: "show the list of parking spots by filter [\"all\", \"available\"\
-          , \"taken\"]"
+        description: "show the list of parking spots by filter [\"All\", \"Available\"\
+          , \"Taken\"]"
         required: false
         type: "string"
       responses:
@@ -76,6 +76,8 @@ paths:
       summary: "park or leave the parking spot"
       description: "the user id"
       operationId: "parking_spots_id_post"
+      consumes:
+      - "multipart/form-data"
       parameters:
       - name: "id"
         in: "path"
@@ -83,19 +85,19 @@ paths:
         required: true
         type: "integer"
       - name: "op"
-        in: "query"
+        in: "formData"
         description: "the operation the user want to act [\"check_in\", \"check_out\"\
           ]"
         required: true
         type: "string"
       - name: "uid"
-        in: "query"
+        in: "formData"
         description: "user id unique for each"
         required: true
         type: "integer"
         format: "int32"
       - name: "time"
-        in: "query"
+        in: "formData"
         description: "the num of hour allow user to park [1-24]"
         required: false
         type: "integer"

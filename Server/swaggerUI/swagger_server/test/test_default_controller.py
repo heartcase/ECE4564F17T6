@@ -55,13 +55,14 @@ class TestDefaultController(BaseTestCase):
 
         park or leave the parking spot
         """
-        query_string = [('op', 'op_example'),
-                        ('uid', 56),
-                        ('time', 56)]
+        data = dict(op='op_example',
+                    uid=56,
+                    time=56)
         response = self.client.open(
             '//ParkingSpots/{id}'.format(id=56),
             method='POST',
-            query_string=query_string)
+            data=data,
+            content_type='multipart/form-data')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
