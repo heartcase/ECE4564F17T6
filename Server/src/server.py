@@ -5,66 +5,116 @@ from pymongo import *
 from flask_cors import CORS, cross_origin
 from flask_httpauth import HTTPBasicAuth
 from flask import g
+from functools import wraps
 auth = HTTPBasicAuth()
 
 @auth.get_password
 def get_password(username):
     g.user = username;
-    return "123"
+    return "123"   #correct password is 123
+
+def check_available(string, list): # the method for parameter checking
+    for each in list:
+        if string == each:
+            return True
+    return False
+
 
 class LOGIN(Resource):
-    decorators = [auth.login_required]
+    decorators = [auth.login_required]  #need auth
     def get(self):
         uid = request.args.get('uid')
-        print("login get")
-        print(g.user)
-        #get functions for login here
-        #login into server
+        if not uid.isnumeric():
+            return {'Error':'Bad Parameters'}, 400
 
-        return {}
+
+        # get functions for login here
+        # login into server
+        print("login get")
+        print("the user name is:" + g.user)
+        print("uid:" + uid)
+
+
+        return {'Success': 'OK'}, 200
 
 class LIST(Resource):
 
     def get(self):
         range = request.args.get('range')
-        print("list get")
-        print("range:" + range)
+        if not check_available(range, ["All", "Available", "Taken"]):
+            return {'Error':'Bad Parameters'}, 400
+
 
         #get functions for here
         #get the list of parking spots
+        print("list get")
+        print("range:" + range)
 
-        return {}
+
+
+        spot1 = {"full": True, "id": 0, "location": "location", "name": "name"}   #return examples
+        spot2 = {"full": False, "id": 1, "location": "location", "name": "name"}  #return examples
+        list = [spot1, spot2]  #return examples
+        return list, 200
 
 class PARKING(Resource):
+    decorators = [auth.login_required]
+
     def get(self,id):
-        print("parking get")
-        print("id:"+id)
+        if not id.isnumeric():
+            return {'Error':'Bad Parameters'}, 400
+
+
         #get functions here
         #check the status of the parking spot
+        print("parking get")
+        print("id:" + id)
 
-        return {}
+
+        spot = {"full": True, "id": 0, "location": "location", "name": "name"} #return examples
+        return spot, 200
+
+
     def post(self,id):
         op = request.form.get('op')
         uid = request.form.get('uid')
         time = request.form.get('time')
+        if not check_available(op, ["check_in", "check_out"]) or \
+                not id.isnumeric() or \
+                        not time.isnumeric() or \
+                            int(time) not in range(1, 25) or \
+                                not uid.isnumeric():
+            return {'Error':'Bad Parameters'}, 400
+
+        # post functions here
+        # park or leave the parking spot
+        print("the user name is:" + g.user)
         print("parking post")
         print("id:" + id)
         print("op:" + op)
         print("uid:" + uid)
         print("time:" + time)
-        # post functions here
-        #park or leave the parking spot
 
-        return {}
+
+        return {'Success': 'OK'}, 200
 
 class USER(Resource):
+    decorators = [auth.login_required]
     def get(self,uid):
+        if not uid.isnumeric():
+            return {'Error':'Bad Parameters'}, 400
+
+        # get functions here
+        # check the status of user
+        print("the user name is:" + g.user)
         print("User get")
         print("uid:" + uid)
-        #get functions here
-        #check the status of user
 
-        return {}
+
+        user = {"name": "Kevin","parking": "parking", "spot_id": 6,"uid": 0}
+        return user, 200
+
+
 
 def flaskService():
     app = Flask(__name__)
