@@ -17,13 +17,6 @@ paths:
       operationId: "login_get"
       produces:
       - "application/json"
-      parameters:
-      - name: "uid"
-        in: "query"
-        description: "the user id"
-        required: true
-        type: "integer"
-        format: "int32"
       responses:
         200:
           description: "Successful Login"
