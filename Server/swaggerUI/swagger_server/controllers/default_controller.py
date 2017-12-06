@@ -70,6 +70,6 @@ def user_uid_get(uid):  # noqa: E501
     :param uid: user id
     :type uid: int
 
-    :rtype: List[User]
+    :rtype: User
     """
     return 'do some magic!'

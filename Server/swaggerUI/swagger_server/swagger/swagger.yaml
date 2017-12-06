@@ -118,9 +118,7 @@ paths:
         200:
           description: "Successful search"
           schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/User"
+            $ref: "#/definitions/User"
       security:
       - basicAuth: []
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
