@@ -2,18 +2,29 @@ from flask import Flask
 from flask_restful import Resource, Api
 from flask import request
 from pymongo import *
+from flask_cors import CORS, cross_origin
+from flask_httpauth import HTTPBasicAuth
+from flask import g
+auth = HTTPBasicAuth()
+
+@auth.get_password
+def get_password(username):
+    g.user = username;
+    return "123"
 
 class LOGIN(Resource):
+    decorators = [auth.login_required]
     def get(self):
         uid = request.args.get('uid')
         print("login get")
-        print("uid:"+uid)
+        print(g.user)
         #get functions for login here
         #login into server
 
         return {}
 
 class LIST(Resource):
+
     def get(self):
         range = request.args.get('range')
         print("list get")
@@ -57,6 +68,7 @@ class USER(Resource):
 
 def flaskService():
     app = Flask(__name__)
+    CORS(app)
     api = Api(app)
     api.add_resource(LOGIN, '/Login')
     api.add_resource(LIST, '/ParkingSpots')
