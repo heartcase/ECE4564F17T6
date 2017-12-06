@@ -6,13 +6,11 @@ from swagger_server.models.user import User  # noqa: E501
 from swagger_server import util
 
 
-def login_get(uid):  # noqa: E501
+def login_get():  # noqa: E501
     """Login into server
 
      # noqa: E501
 
-    :param uid: the user id
-    :type uid: int
 
     :rtype: str
     """

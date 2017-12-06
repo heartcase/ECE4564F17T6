@@ -18,11 +18,9 @@ class TestDefaultController(BaseTestCase):
 
         Login into server
         """
-        query_string = [('uid', 56)]
         response = self.client.open(
             '//Login',
-            method='GET',
-            query_string=query_string)
+            method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

@@ -17,6 +17,7 @@ paths:
       operationId: "login_get"
       produces:
       - "application/json"
+      parameters: []
       responses:
         200:
           description: "Successful Login"
