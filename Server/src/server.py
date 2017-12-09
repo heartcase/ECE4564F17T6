@@ -8,7 +8,7 @@ from flask import g
 from functools import wraps
 auth = HTTPBasicAuth()
 
-client = MongoClient("localhost/ui", 8080)
+client = MongoClient("localhost", 8080)
 database_name = "ECE4564_Final_Project"
 collection_name = 'user'
 collection_name2 = 'parking'
@@ -17,10 +17,14 @@ collection = db[collection_name]
 collection2 = db[collection_name2]
 
 
+
 @auth.get_password
 def get_password(username):
-    g.user = username;
-    return "123"   #correct password is 123
+	user = collection.find_one({"username": username})
+	if user:
+		return user['password']
+    #g.user = username;
+    #return "123"   #correct password is 123
 
 def check_available(string, list): # the method for parameter checking
     for each in list:
@@ -43,6 +47,8 @@ class LOGIN(Resource):
 
 
         # get functions for login here
+		if collection.find_one({'uid':uid}):
+			
         # login into server
         print("login get")
         print("the user name is:" + g.user)
@@ -84,8 +90,8 @@ class PARKING(Resource):
 
 
         #get functions here
-		if collection.find_one({'id':id}):
-			spot = collection.find_one({'id':id})['content']
+		if collection2.find_one({'id':id}):
+			spot = collection2.find_one({'id':id})['content']
         #check the status of the parking spot
         print("parking get")
         print("id:" + id)
@@ -107,6 +113,10 @@ class PARKING(Resource):
             return {'Error':'Bad Parameters'}, 400
 
         # post functions here
+		if op == ' ':
+			if not collection2.find_one({'id':id}):
+				collection2.insert_one({'id':id, 'time':time, 'uid':uid})
+				return {'Success': 'OK'}, 200
         # park or leave the parking spot
         print("the user name is:" + g.user)
         print("parking post")
