@@ -74,8 +74,6 @@ class LIST(Resource):
         print("list get")
         print("range:" + range)
 
-
-
         spot1 = {"full": True, "id": 0, "location": "location", "name": "name"}   #return examples
         spot2 = {"full": False, "id": 1, "location": "location", "name": "name"}  #return examples
         #list = [spot1, spot2]  #return examples
@@ -113,10 +111,15 @@ class PARKING(Resource):
             return {'Error':'Bad Parameters'}, 400
 
         # post functions here
-		if op == ' ':
-			if not collection2.find_one({'id':id}):
-				collection2.insert_one({'id':id, 'time':time, 'uid':uid})
-				return {'Success': 'OK'}, 200
+		if op == 'check_in':
+			if collection2.find_one({'id':id}):
+				collection2.find_one_and_update({'id':id, 'time':time, 'uid':uid})
+			return {'Success': 'OK'}, 200
+			
+		if op == 'check_out':
+			if collection2.find_one({'id':id}):
+				collection2.find_one_and_update({'id':id, 'time':time, 'uid':uid})
+				
         # park or leave the parking spot
         print("the user name is:" + g.user)
         print("parking post")
