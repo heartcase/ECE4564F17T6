@@ -17,7 +17,6 @@ collection = db[collection_name]
 collection2 = db[collection_name2]
 
 
-
 @auth.get_password
 def get_password(username):
 	user = collection.find_one({"username": username})
@@ -89,7 +88,7 @@ class PARKING(Resource):
 
         #get functions here
 		if collection2.find_one({'id':id}):
-			spot = collection2.find_one({'id':id})['content']
+			spot = collection2.find_one({'id':id})
         #check the status of the parking spot
         print("parking get")
         print("id:" + id)
@@ -113,12 +112,12 @@ class PARKING(Resource):
         # post functions here
 		if op == 'check_in':
 			if collection2.find_one({'id':id}):
-				collection2.find_one_and_update({'id':id, 'time':time, 'uid':uid})
+				collection2.find_one_and_update({'id':id}, {'$set':{'time':time}}, {'uid':uid})
 			return {'Success': 'OK'}, 200
 			
 		if op == 'check_out':
 			if collection2.find_one({'id':id}):
-				collection2.find_one_and_update({'id':id, 'time':time, 'uid':uid})
+				collection2.find_one_and_update({'id':id}, {'$set':{'time':time}}, {'uid':uid})
 				
         # park or leave the parking spot
         print("the user name is:" + g.user)
