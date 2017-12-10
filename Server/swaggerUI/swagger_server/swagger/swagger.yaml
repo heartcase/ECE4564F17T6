@@ -22,8 +22,7 @@ paths:
         200:
           description: "Successful Login"
           schema:
-            type: "string"
-            example: "OKAY"
+            $ref: "#/definitions/User"
         400:
           description: "Incorrect Password"
       security:
@@ -36,8 +35,7 @@ paths:
       parameters:
       - name: "range"
         in: "query"
-        description: "show the list of parking spots by filter [\"All\", \"Available\"\
-          , \"Taken\"]"
+        description: "show the list of parking spots by filter “all”/“available”"
         required: false
         type: "string"
       responses:
@@ -78,19 +76,13 @@ paths:
         description: "parking spot id"
         required: true
         type: "integer"
-      - name: "op"
+      - name: "operation"
         in: "formData"
         description: "the operation the user want to act [\"check_in\", \"check_out\"\
           ]"
         required: true
         type: "string"
-      - name: "uid"
-        in: "formData"
-        description: "user id unique for each"
-        required: true
-        type: "integer"
-        format: "int32"
-      - name: "time"
+      - name: "park_hour"
         in: "formData"
         description: "the num of hour allow user to park [1-24]"
         required: false
@@ -139,8 +131,11 @@ definitions:
       location:
         type: "string"
         description: "the position of the parking spot"
-      full:
-        type: "boolean"
+      status:
+        type: "string"
+      uid:
+        type: "integer"
+        format: "int32"
     example:
       name: "name"
       location: "location"
@@ -156,13 +151,20 @@ definitions:
       name:
         type: "string"
         description: "name of the user"
-      parking:
+      password:
+        type: "string"
+      status:
         type: "string"
         description: "if the user is parking"
       spot_id:
         type: "integer"
         format: "int32"
         description: "the id of parking spot"
+      park_time:
+        type: "string"
+      park_hour:
+        type: "integer"
+        format: "int32"
     example:
       parking: "parking"
       uid: 0

@@ -15,36 +15,51 @@ class User(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, uid: int=None, name: str=None, parking: str=None, spot_id: int=None):  # noqa: E501
+    def __init__(self, uid: int=None, name: str=None, password: str=None, status: str=None, spot_id: int=None, park_time: str=None, park_hour: int=None):  # noqa: E501
         """User - a model defined in Swagger
 
         :param uid: The uid of this User.  # noqa: E501
         :type uid: int
         :param name: The name of this User.  # noqa: E501
         :type name: str
-        :param parking: The parking of this User.  # noqa: E501
-        :type parking: str
+        :param password: The password of this User.  # noqa: E501
+        :type password: str
+        :param status: The status of this User.  # noqa: E501
+        :type status: str
         :param spot_id: The spot_id of this User.  # noqa: E501
         :type spot_id: int
+        :param park_time: The park_time of this User.  # noqa: E501
+        :type park_time: str
+        :param park_hour: The park_hour of this User.  # noqa: E501
+        :type park_hour: int
         """
         self.swagger_types = {
             'uid': int,
             'name': str,
-            'parking': str,
-            'spot_id': int
+            'password': str,
+            'status': str,
+            'spot_id': int,
+            'park_time': str,
+            'park_hour': int
         }
 
         self.attribute_map = {
             'uid': 'uid',
             'name': 'name',
-            'parking': 'parking',
-            'spot_id': 'spot_id'
+            'password': 'password',
+            'status': 'status',
+            'spot_id': 'spot_id',
+            'park_time': 'park_time',
+            'park_hour': 'park_hour'
         }
 
         self._uid = uid
         self._name = name
-        self._parking = parking
+        self._password = password
+        self._status = status
         self._spot_id = spot_id
+        self._park_time = park_time
+        self._park_hour = park_hour
 
     @classmethod
     def from_dict(cls, dikt) -> 'User':
@@ -104,27 +119,48 @@ class User(Model):
         self._name = name
 
     @property
-    def parking(self) -> str:
-        """Gets the parking of this User.
+    def password(self) -> str:
+        """Gets the password of this User.
 
-        if the user is parking  # noqa: E501
 
-        :return: The parking of this User.
+        :return: The password of this User.
         :rtype: str
         """
-        return self._parking
+        return self._password
 
-    @parking.setter
-    def parking(self, parking: str):
-        """Sets the parking of this User.
+    @password.setter
+    def password(self, password: str):
+        """Sets the password of this User.
+
+
+        :param password: The password of this User.
+        :type password: str
+        """
+
+        self._password = password
+
+    @property
+    def status(self) -> str:
+        """Gets the status of this User.
 
         if the user is parking  # noqa: E501
 
-        :param parking: The parking of this User.
-        :type parking: str
+        :return: The status of this User.
+        :rtype: str
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status: str):
+        """Sets the status of this User.
+
+        if the user is parking  # noqa: E501
+
+        :param status: The status of this User.
+        :type status: str
         """
 
-        self._parking = parking
+        self._status = status
 
     @property
     def spot_id(self) -> int:
@@ -148,3 +184,45 @@ class User(Model):
         """
 
         self._spot_id = spot_id
+
+    @property
+    def park_time(self) -> str:
+        """Gets the park_time of this User.
+
+
+        :return: The park_time of this User.
+        :rtype: str
+        """
+        return self._park_time
+
+    @park_time.setter
+    def park_time(self, park_time: str):
+        """Sets the park_time of this User.
+
+
+        :param park_time: The park_time of this User.
+        :type park_time: str
+        """
+
+        self._park_time = park_time
+
+    @property
+    def park_hour(self) -> int:
+        """Gets the park_hour of this User.
+
+
+        :return: The park_hour of this User.
+        :rtype: int
+        """
+        return self._park_hour
+
+    @park_hour.setter
+    def park_hour(self, park_hour: int):
+        """Sets the park_hour of this User.
+
+
+        :param park_hour: The park_hour of this User.
+        :type park_hour: int
+        """
+
+        self._park_hour = park_hour

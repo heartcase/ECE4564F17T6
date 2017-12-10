@@ -53,9 +53,8 @@ class TestDefaultController(BaseTestCase):
 
         park or leave the parking spot
         """
-        data = dict(op='op_example',
-                    uid=56,
-                    time=56)
+        data = dict(operation='operation_example',
+                    park_hour=56)
         response = self.client.open(
             '//ParkingSpots/{id}'.format(id=56),
             method='POST',

@@ -15,7 +15,7 @@ class ParkingSpot(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: int=None, name: str=None, location: str=None, full: bool=None):  # noqa: E501
+    def __init__(self, id: int=None, name: str=None, location: str=None, status: str=None, uid: int=None):  # noqa: E501
         """ParkingSpot - a model defined in Swagger
 
         :param id: The id of this ParkingSpot.  # noqa: E501
@@ -24,27 +24,32 @@ class ParkingSpot(Model):
         :type name: str
         :param location: The location of this ParkingSpot.  # noqa: E501
         :type location: str
-        :param full: The full of this ParkingSpot.  # noqa: E501
-        :type full: bool
+        :param status: The status of this ParkingSpot.  # noqa: E501
+        :type status: str
+        :param uid: The uid of this ParkingSpot.  # noqa: E501
+        :type uid: int
         """
         self.swagger_types = {
             'id': int,
             'name': str,
             'location': str,
-            'full': bool
+            'status': str,
+            'uid': int
         }
 
         self.attribute_map = {
             'id': 'id',
             'name': 'name',
             'location': 'location',
-            'full': 'full'
+            'status': 'status',
+            'uid': 'uid'
         }
 
         self._id = id
         self._name = name
         self._location = location
-        self._full = full
+        self._status = status
+        self._uid = uid
 
     @classmethod
     def from_dict(cls, dikt) -> 'ParkingSpot':
@@ -127,22 +132,43 @@ class ParkingSpot(Model):
         self._location = location
 
     @property
-    def full(self) -> bool:
-        """Gets the full of this ParkingSpot.
+    def status(self) -> str:
+        """Gets the status of this ParkingSpot.
 
 
-        :return: The full of this ParkingSpot.
-        :rtype: bool
+        :return: The status of this ParkingSpot.
+        :rtype: str
         """
-        return self._full
+        return self._status
 
-    @full.setter
-    def full(self, full: bool):
-        """Sets the full of this ParkingSpot.
+    @status.setter
+    def status(self, status: str):
+        """Sets the status of this ParkingSpot.
 
 
-        :param full: The full of this ParkingSpot.
-        :type full: bool
+        :param status: The status of this ParkingSpot.
+        :type status: str
         """
 
-        self._full = full
+        self._status = status
+
+    @property
+    def uid(self) -> int:
+        """Gets the uid of this ParkingSpot.
+
+
+        :return: The uid of this ParkingSpot.
+        :rtype: int
+        """
+        return self._uid
+
+    @uid.setter
+    def uid(self, uid: int):
+        """Sets the uid of this ParkingSpot.
+
+
+        :param uid: The uid of this ParkingSpot.
+        :type uid: int
+        """
+
+        self._uid = uid

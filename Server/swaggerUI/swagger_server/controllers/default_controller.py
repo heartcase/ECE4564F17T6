@@ -12,7 +12,7 @@ def login_get():  # noqa: E501
      # noqa: E501
 
 
-    :rtype: str
+    :rtype: User
     """
     return 'do some magic!'
 
@@ -22,7 +22,7 @@ def parking_spots_get(range=None):  # noqa: E501
 
      # noqa: E501
 
-    :param range: show the list of parking spots by filter [\&quot;All\&quot;, \&quot;Available\&quot;, \&quot;Taken\&quot;]
+    :param range: show the list of parking spots by filter “all”/“available”
     :type range: str
 
     :rtype: List[ParkingSpot]
@@ -43,19 +43,17 @@ def parking_spots_id_get(id):  # noqa: E501
     return 'do some magic!'
 
 
-def parking_spots_id_post(id, op, uid, time=None):  # noqa: E501
+def parking_spots_id_post(id, operation, park_hour=None):  # noqa: E501
     """park or leave the parking spot
 
     the user id # noqa: E501
 
     :param id: parking spot id
     :type id: int
-    :param op: the operation the user want to act [\&quot;check_in\&quot;, \&quot;check_out\&quot;]
-    :type op: str
-    :param uid: user id unique for each
-    :type uid: int
-    :param time: the num of hour allow user to park [1-24]
-    :type time: int
+    :param operation: the operation the user want to act [\&quot;check_in\&quot;, \&quot;check_out\&quot;]
+    :type operation: str
+    :param park_hour: the num of hour allow user to park [1-24]
+    :type park_hour: int
 
     :rtype: None
     """
