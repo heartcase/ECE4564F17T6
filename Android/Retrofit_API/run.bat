@@ -1,0 +1,2 @@
+javac -cp converter-gson-2.3.0.jar;gson-2.8.2.jar;okhttp-3.9.1.jar;okio-1.13.0.jar;retrofit-2.3.0.jar  *.java
+java -classpath .;converter-gson-2.3.0.jar;gson-2.8.2.jar;okhttp-3.9.1.jar;okio-1.13.0.jar;retrofit-2.3.0.jar Test
