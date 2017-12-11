@@ -23,8 +23,9 @@
             android:id="@+id/input_server"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Server"
             android:singleLine="true"
-            android:hint="Server" />
+            android:text="192.168.1.108" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -36,8 +37,9 @@
             android:id="@+id/input_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Username"
             android:singleLine="true"
-            android:hint="Username" />
+            android:text="User1" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -50,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:text="321" />
 
     </android.support.design.widget.TextInputLayout>
 
