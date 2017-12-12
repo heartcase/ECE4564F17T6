@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 String scannedData = result.getContents();
                 if (scannedData != null) {
                     Toast.makeText(MainActivity.this, scannedData, Toast.LENGTH_LONG).show();
-                    int spotId = Integer.valueOf(scannedData);
                     try {
+                        int spotId = Integer.valueOf(scannedData);
                         Method callback = MainActivity.class.getMethod("objectCallback", ParkingSpotPackage.class);
                         ParkingAPI api = new ParkingAPI(dataFragment.address, MainActivity.this, null, callback , null);
                         if (dataFragment.user.status.equals("check_out")){
@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
     public void objectCallback(UserPackage user){
+        if(user == null) return;
         this.user = user;
         dataFragment.user = user;
         ((TextView)findViewById(R.id.text_name)).setText(dataFragment.user.username);
@@ -188,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.text_status)).setText(status);
     }
     public void objectCallback(ParkingSpotPackage spot){
+        if(spot == null) return;
         this.spot = spot;
         try {
             Method callback = MainActivity.class.getMethod("objectCallback", UserPackage.class);
@@ -199,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void objectCallback(ParkingSpotPackage[] spots){
+        if(spots == null) return;
         this.spots = spots;
         List<ParkingSpotPackage> list = new ArrayList<>();
         for(ParkingSpotPackage s: spots){

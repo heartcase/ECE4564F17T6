@@ -92,9 +92,7 @@ public class ParkingAPI
                     user = response.body();
                     try {
                         callbackUserPackage.invoke(caller, user);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
+                    }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
@@ -102,9 +100,7 @@ public class ParkingAPI
                 public void onFailure(Call<UserPackage> call, Throwable t) {
                     try {
                         callbackUserPackage.invoke(caller, user);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
+                    }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
@@ -123,9 +119,7 @@ public class ParkingAPI
                     parkingSpot = response.body();
                     try {
                         callbackParkingSpotPackage.invoke(caller, parkingSpot);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
+                    }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
@@ -133,9 +127,7 @@ public class ParkingAPI
                 public void onFailure(Call<ParkingSpotPackage> call, Throwable t) {
                     try {
                         callbackParkingSpotPackage.invoke(caller, parkingSpot);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
+                    }catch (Exception e){
                         e.printStackTrace();
                     }
                 }
@@ -154,9 +146,7 @@ public class ParkingAPI
                     parkingSpots = response.body();
                     try {
                         callbackParkingSpotPackages.invoke(caller, (Object) parkingSpots);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
+                    } catch (Exception e){
                         e.printStackTrace();
                     }
                 }
@@ -164,9 +154,7 @@ public class ParkingAPI
                 public void onFailure(Call<ParkingSpotPackage[]> call, Throwable t) {
                     try {
                         callbackParkingSpotPackages.invoke(caller, (Object) parkingSpots);
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
+                    } catch (Exception e){
                         e.printStackTrace();
                     }
                 }
