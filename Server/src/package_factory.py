@@ -31,7 +31,7 @@ def get_counters():
 
 def new_spot():
     a, c = get_counters()
-    spot = pack_parking_spot(c, 'Spot' + str(c), '', '', 0)
+    spot = pack_parking_spot(c, 'Spot' + str(c), 'check_out', 'somewhere', 0)
     collection2.insert_one(spot)
     collection3.find_one_and_update({'name': 'counter'}, {'$set': {'spot_id': c + 1}})
 
